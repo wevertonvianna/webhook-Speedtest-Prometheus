@@ -1,0 +1,11 @@
+Dockerfile
+.dockerignore
+.venv
+.env
+node_modules
+dist
+.vscode
+*.log
+.idea
+*.iml
+*.swp
