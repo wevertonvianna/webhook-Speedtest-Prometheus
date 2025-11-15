@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  webhook:
+    build: .
+    container_name: speedtest-webhook
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

@@ -1,4 +1,6 @@
-# Webhook Speedtest + Prometheus
+# Webhook Speedtest + Prometheus + Docker
+
+![Diagrama Geral](https://dummyimage.com/900x280/cccccc/000000\&text=Fluxo+do+Webhook+Speedtest+%E2%86%92+Flask+%E2%86%92+Prometheus+%E2%86%92+Grafana)
 
 Este repositório contém um serviço Flask que recebe webhooks do MySpeedTest, processa métricas de ping, download, upload e duração do teste, e expõe tudo em formato Prometheus para uso com Grafana.
 
@@ -22,32 +24,54 @@ Este repositório contém um serviço Flask que recebe webhooks do MySpeedTest, 
 
 # 📁 Estrutura do Projeto
 
+
 ```
 ├── app.py
 ├── requirements.txt
+├── Dockerfile
+├── dockercompose.yml
 └── README.md
 ```
 
 ---
 
-# 🚀 Como rodar localmente
 
-### 1. Instale as dependências
+# 🐳 Rodando via Docker
 
-```
-pip install -r requirements.txt
-```
-
-### 2. Inicie o servidor Flask
+## 1. Build da imagem
 
 ```
-python app.py
+docker build -t speedtest-webhook .
 ```
 
-Servidor roda em:
+## 3. Executar o container
 
 ```
-http://0.0.0.0:8000
+docker run -d \
+  --name speedtest-webhook \
+  -p 8000:8000 \
+  speedtest-webhook
+```
+
+---
+
+# 🔧 docker-compose.yml (opcional)
+
+```
+version: '3.9'
+services:
+  webhook:
+    build: .
+    container_name: speedtest-webhook
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+```
+
+Rodar com:
+
+```
+docker compose up -d
 ```
 
 ---
