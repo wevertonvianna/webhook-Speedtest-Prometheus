@@ -1,7 +1,5 @@
 # Webhook Speedtest + Prometheus + Docker
 
-![Diagrama Geral](https://dummyimage.com/900x280/cccccc/000000\&text=Fluxo+do+Webhook+Speedtest+%E2%86%92+Flask+%E2%86%92+Prometheus+%E2%86%92+Grafana)
-
 Este repositório contém um serviço Flask que recebe webhooks do MySpeedTest, processa métricas de ping, download, upload e duração do teste, e expõe tudo em formato Prometheus para uso com Grafana.
 
 ## 📌 Funcionalidades
