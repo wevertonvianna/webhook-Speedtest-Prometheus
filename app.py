@@ -105,6 +105,11 @@ def receive_webhook():
             speedtest_summary.labels(event_type=event).observe(duration)
 
         elif event in ("TEST_FAILED", "TEST_ERROR"):
+            # Zera as métricas do último teste válido para não manter valores antigos no painel
+            speedtest_ping.set(0)
+            speedtest_download.set(0)
+            speedtest_upload.set(0)
+
             error_type = _extract_error_type(data, payload)
             speedtest_errors_total.labels(error_type=error_type).inc()
 
